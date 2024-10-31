@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.9
 
 /**
  Manifest file for Swift Package Manager. This file defines our Swift Package for customers to install our SDK modules into their app. 
@@ -34,7 +34,7 @@ if (ProcessInfo.processInfo.environment["CI"] != nil) { // true if running on a 
 let package = Package(
     name: "Customer.io",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v16)
     ],
     products: products,
     dependencies: [
