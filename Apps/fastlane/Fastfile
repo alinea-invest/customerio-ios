@@ -45,7 +45,7 @@ platform :ios do
     new_build_number = arguments[:build_number] || get_new_build_version()
     new_app_version = arguments[:app_version] || get_new_app_version()
     build_notes = get_build_notes()
-    test_groups = get_build_test_groups()
+    test_groups = get_build_test_groups(distribution_groups: arguments[:distribution_groups])
 
     # Modify the source code with the new app version and build number before we compile the iOS app. This is a good idea to do to make installing builds on a test device easier. 
     # The iOS OS might give errors when trying to install a build of an app if the app is already installed on the device. Having unique build number or app version can avoid those errors. 
@@ -59,7 +59,9 @@ platform :ios do
     if File.exist?(version_update_script_path)
       UI.important("Updating the SDK's source code version to non-production version. This allows the sample apps to show the SDK version at runtime for app user to better understand the version of the SDK they are running.")
 
-      sh("#{version_update_script_path} \"#{new_app_version}.#{new_build_number}\"")
+      new_sdk_version = "#{new_app_version}.#{new_build_number}"
+      sh("#{version_update_script_path} \"#{new_sdk_version}\"")
+      sh("echo 'SDK_VERSION=#{new_sdk_version}' >> $GITHUB_ENV")
     end 
 
     uses_cocoapods = File.exists?("../Podfile")
@@ -214,22 +216,15 @@ lane :get_build_notes do
   build_notes # return value 
 end 
 
-lane :get_build_test_groups do 
-  test_groups = ['all-builds'] # send all builds to group 'all-builds'. Therefore, set it here and we will not remove it. 
-  github = GitHub.new()
-    
-  # To avoid giving potentially unstable builds of our sample apps to certain members of the organization, we only send builds to "stable" group uncertain certain situations. 
-  # If a commit is merged into main, it's considered stable because we deploy to production on merges to main. 
-  if github.is_commit_pushed && github.push_branch == "main"
-    test_groups.append("stable-builds")
-  end
-
-  test_groups = test_groups.join(", ")
+lane :get_build_test_groups do |arguments|
+  # Firebase App Distribution expects a comma separated string of test group names.
+  # If no groups are passed in, then set test groups to an empty string.
+  test_groups = arguments[:distribution_groups] || ""
 
   UI.important("Test group names that will be added to this build: #{test_groups}")
 
-  test_groups # return value 
-end 
+  test_groups # return value
+end
 
 # Parse JSON out of GitHub Context JSON when being executed on GitHub Actions. 
 class GitHub 

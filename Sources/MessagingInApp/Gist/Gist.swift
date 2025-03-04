@@ -67,8 +67,11 @@ class Gist: GistProvider {
     }
 
     private func invalidateTimer() {
-        queueTimer?.invalidate()
-        queueTimer = nil
+        // Timer must be scheduled or modified on main.
+        threadUtil.runMain {
+            self.queueTimer?.invalidate()
+            self.queueTimer = nil
+        }
     }
 
     func resetState() {
@@ -83,7 +86,7 @@ class Gist: GistProvider {
 
     func dismissMessage() {
         inAppMessageManager.fetchState { [self] state in
-            guard case .displayed(let message) = state.currentMessageState else {
+            guard case .displayed(let message) = state.modalMessageState else {
                 return
             }
 

@@ -1,3 +1,39 @@
+## [3.8.0](https://github.com/customerio/customerio-ios/compare/3.7.2...3.8.0) (2025-01-30)
+
+### Features
+
+* inline in-app  ([#864](https://github.com/customerio/customerio-ios/issues/864)) ([35fba9b](https://github.com/customerio/customerio-ios/commit/35fba9b8171ca50138553d2c2d6a87a747a90c49))
+
+## [3.7.2](https://github.com/customerio/customerio-ios/compare/3.7.1...3.7.2) (2025-01-08)
+
+### Bug Fixes
+
+* Fix in-app messages overlay color ignored from message payload ([#843](https://github.com/customerio/customerio-ios/issues/843)) ([bbc708d](https://github.com/customerio/customerio-ios/commit/bbc708dbb5b72d124b09ad3536df064f91410ea5))
+
+## [3.7.1](https://github.com/customerio/customerio-ios/compare/3.7.0...3.7.1) (2025-01-06)
+
+### Bug Fixes
+
+* interact with Gist timer on main ([#840](https://github.com/customerio/customerio-ios/issues/840)) ([93200a4](https://github.com/customerio/customerio-ios/commit/93200a420d589962d12c618f63b64dce03c8940b))
+
+## [3.7.0](https://github.com/customerio/customerio-ios/compare/3.6.0...3.7.0) (2025-01-01)
+
+### Features
+
+* add option to disable screen view usage ([#844](https://github.com/customerio/customerio-ios/issues/844)) ([486e228](https://github.com/customerio/customerio-ios/commit/486e2281f91715fcbcfa9dbde01743329e838fda))
+
+## [3.6.0](https://github.com/customerio/customerio-ios/compare/3.5.1...3.6.0) (2024-11-13)
+
+### Features
+
+* support for large in-app messages ([#831](https://github.com/customerio/customerio-ios/issues/831)) ([3731f68](https://github.com/customerio/customerio-ios/commit/3731f685a19bd1e9840c53ab3bcd70e37deac182))
+
+## [3.5.1](https://github.com/customerio/customerio-ios/compare/3.5.0...3.5.1) (2024-10-25)
+
+### Bug Fixes
+
+* dismiss keyboard on showing in app message on CDP SDK ([#828](https://github.com/customerio/customerio-ios/issues/828)) ([faad28a](https://github.com/customerio/customerio-ios/commit/faad28a02f085b5f4a334bc9122dbfe862e38119))
+
 ## [3.5.0](https://github.com/customerio/customerio-ios/compare/3.4.1...3.5.0) (2024-10-16)
 
 ### Features
